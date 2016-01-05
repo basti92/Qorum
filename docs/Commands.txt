@@ -1,0 +1,40 @@
+// dev-server start
+php app/console server:run
+
+// install a bundle/package
+composer require symfony/symfony
+
+// install missing bundles/packages
+composer update
+
+// Access mySQL in Linux Terminal
+sudo mysql -h localhost -u root -p
+
+
+
+
+// DATABASE / DOCTRINE
+    // Database delete, create
+    php app/console doctrine:database:drop --force
+    php app/console doctrine:database:create
+
+    // Update Database (change at Entities)
+    php app/console doctrine:schema:update --force
+
+    // generate getters and setters for an entity
+    php bin/console doctrine:generate:entities AppBundle/Entity/Product
+    // generates all entities in the AppBundle
+    php app/console doctrine:generate:entities AppBundle
+
+    // Fixtures
+    php app/console doctrine:fixtures:load --append
+
+
+
+
+
+// Show Routes
+php app/console debug:router
+
+// clear cache, to enable template caching go to twig config
+php app/console cache:clear

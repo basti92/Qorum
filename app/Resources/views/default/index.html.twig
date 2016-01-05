@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block main_content %}
+    <div class="container" style="margin-top: 75px">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="span7 text-center">
+                        <a class="btn icon-btn btn-success" href="{{ path('startTopic') }}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>New Question</a>
+                    </div>
+
+                    <div style="margin-bottom: 30px"></div>
+
+                    <h4>My Topics</h4>
+                    <table class="table table-striped center">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Some Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for topic in mytopics %}
+                            <tr>
+                                <td>{{ topic.headline }}</td>
+                                <td><a href="{{ path('watchTopic', {'id':  topic.id}) }}">GoTo</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    Nicht eingloggt
+                {% endif %}
+
+                <div style="margin-bottom: 50px"></div>
+
+                <h4>All Tags</h4>
+
+                <table class="table table-striped center">
+                    <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Related Content</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tag in tags %}
+                        <tr>
+                            <td>{{ tag.title }}</td>
+                            <td>{% if tag.topics.count > 0 %}
+                                {{ tag.topics.count }} <span class="glyphicon glyphicon-eye-open"></span></td>
+                            {% else %}
+                            No contributions yet!
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> {#container fluid#}
+
+
+{% endblock %}

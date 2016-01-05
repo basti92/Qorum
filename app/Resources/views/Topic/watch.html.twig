@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+
+{% block main_content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-1">
+                <h3>{{ topic.headline }}</h3>
+                <div style="margin-bottom: 20px"></div>
+            </div>
+        </div><!-- /row -->
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-1">
+                <div class="panel panel-default" style="background-color: #fff733">
+                    <div class="panel-heading">
+                        <strong>{{ topic.author.username }}</strong> <span
+                                class="text-muted">{{ topic.date.format('Y-m-d H:i:s') }}</span>
+                    </div>
+                    <div class="panel-body">
+                        {{ topic.description }}
+                    </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+        </div><!-- /row -->
+    </div>
+    <div class="container">
+    <div style="margin-bottom: 25px"></div>
+    <div class="row">
+        <div class="col-sm-1 col-sm-offset-2">
+            <h3>Replies</h3>
+            <div style="margin-bottom: 20px"></div>
+        </div><!-- /col-sm-1 -->
+    </div>
+    {% if topic.posts.empty == false %}
+        {% for post in topic.posts %}
+            {% if loop.index0 is even %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7 col-sm-offset-2">
+                            <div class="panel panel-default" style="background-color: #cbe1ff">
+                                <div class="panel-heading">
+                                    <strong>{{ post.author }}</strong> <span
+                                            class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                </div>
+                                <div class="panel-body">
+                                    {{ post.content }}
+                                </div><!-- /panel-body -->
+                            </div><!-- /panel panel-default -->
+                        </div><!-- /col-sm-5 -->
+                    </div><!-- /row -->
+
+                </div><!-- /container -->
+
+                <div style="margin-bottom: 15px"></div>
+
+            {% else %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7 col-sm-offset-2">
+                            <div class="panel panel-default" style="background-color: #d1ffa0">
+                                <div class="panel-heading">
+                                    <strong>{{ post.author }}</strong> <span
+                                            class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                </div>
+                                <div class="panel-body">
+                                    {{ post.content }}
+                                </div><!-- /panel-body -->
+                            </div><!-- /panel panel-default -->
+                        </div><!-- /col-sm-5 -->
+                    </div><!-- /row -->
+                </div><!-- /container -->
+                <div style="margin-bottom: 15px"></div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+    {% form_theme form _self %}
+
+    {% block textarea_widget %}
+        <div class="textarea_widget">
+            {% set type = type|default('text') %}
+            {{ block('form_widget_simple') }}
+        </div>
+    {% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-2">
+                {{ form_start(form) }}
+
+                <div class="form-group">
+                    <div class="input-group">
+                        {{ form_label(form.content, 'Your Reply') }}
+                        {{ form_widget(form.content, {'attr' : {'class': 'er-box'}}) }}
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        {{ form_label(form.save) }}
+                        {{ form_widget(form.save, {'attr' : {'cols': '10'}} ) }}
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div><!-- /row -->
+    </div><!-- /container -->
+{% endblock %}
