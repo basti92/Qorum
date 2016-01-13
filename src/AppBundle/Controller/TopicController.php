@@ -74,7 +74,7 @@ class TopicController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($topic);
             $em->flush();
-            return $this->redirect($this->generateUrl('watchTopic/' . $topic->getId()));
+            return $this->redirect($this->generateUrl('watchTopic', array('id' => $topic->getId())));
         }
 
         return $this->render('Topic/new.html.twig', array(
