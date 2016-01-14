@@ -21,7 +21,6 @@ class InsertTags implements FixtureInterface
         $tag = new Tag();
         $tag->setTitle('Frontend');
         $tag->setDescription('CSS and JS');
-
         $manager->persist($tag);
         $manager->flush();
 
@@ -30,6 +29,19 @@ class InsertTags implements FixtureInterface
         $tag->setDescription('PHP / C# / Java asf.');
         $manager->persist($tag);
         $manager->flush();
+
+        $tag = new Tag();
+        $tag->setTitle('Framework');
+        $tag->setDescription('Symfony / Zend / Movico');
+        $manager->persist($tag);
+        $manager->flush();
+
+        $tag = new Tag();
+        $tag->setTitle('Empty Tag');
+        $tag->setDescription('Emty / Tag');
+        $manager->persist($tag);
+        $manager->flush();
+
 
 //        $userAdmin = new User();
 //        $userAdmin->setUsername('admin');

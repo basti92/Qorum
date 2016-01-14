@@ -30,8 +30,6 @@ class DefaultController extends Controller
         }
 
 
-
-
         //  All Tags ordered by ContentSize related
         $tagrepo = $this->getDoctrine()
             ->getRepository('AppBundle:Tag');

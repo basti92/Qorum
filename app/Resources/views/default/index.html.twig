@@ -48,10 +48,12 @@
                         <tr>
                             <td>{{ tag.title }}</td>
                             <td>{% if tag.topics.count > 0 %}
-                                {{ tag.topics.count }} <span class="glyphicon glyphicon-eye-open"></span></td>
+                                    {% for topic in tag.topics %}
+                                        <a href="{{ path('watchTopic', {'id':  topic.id}) }}">{{ topic.headline }}</a>
+                                    {% endfor %}
                             {% else %}
-                            No contributions yet!
-                            {% endif %}
+                                No contributions yet!
+                            {% endif %}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
