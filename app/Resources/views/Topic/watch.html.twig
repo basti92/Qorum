@@ -105,5 +105,9 @@
                 {{ form_end(form) }}
             </div>
         </div><!-- /row -->
+        <p>Related Tags:
+            {% for tag in topic.tags %}
+                <p><a href="{{ path('homepage') }}">{{ tag.title }}</a></p>
+            {% endfor %}</p>
     </div><!-- /container -->
 {% endblock %}
