@@ -7,6 +7,8 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 <h3>{{ topic.headline }}</h3>
+
+
                 <div style="margin-bottom: 20px"></div>
             </div>
         </div><!-- /row -->
@@ -21,8 +23,17 @@
                         {{ topic.description }}
                     </div><!-- /panel-body -->
                 </div><!-- /panel panel-default -->
+                {% if topic.tags.count > 0 %}
+                     <ul id="relatedtags" style="list-style-type: none; margin: 0; padding: 0;">
+                    <li>Related Tags:</li>
+                    {% for tag in topic.tags %}
+                            <li><a href="{{ path('homepage') }}">{{ tag.title }}</a></li>
+                        {% endfor %}</ul>
+
+                {% endif %}
             </div><!-- /col-sm-5 -->
         </div><!-- /row -->
+
     </div>
     <div class="container">
     <div style="margin-bottom: 25px"></div>
@@ -105,9 +116,6 @@
                 {{ form_end(form) }}
             </div>
         </div><!-- /row -->
-        <p>Related Tags:
-            {% for tag in topic.tags %}
-                <p><a href="{{ path('homepage') }}">{{ tag.title }}</a></p>
-            {% endfor %}</p>
+
     </div><!-- /container -->
 {% endblock %}

@@ -4,34 +4,36 @@
     <div class="container" style="margin-top: 75px">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <div class="span7 text-center">
-                        <a class="btn icon-btn btn-success" href="{{ path('startTopic') }}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>New Question</a>
-                    </div>
+                <div class="span7 text-center">
+                    <a class="btn icon-btn btn-success" href="{{ path('startTopic') }}"><span
+                                class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>New
+                        Question</a>
+                </div>
+                {% if not mytopics is empty %}
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-                    <div style="margin-bottom: 30px"></div>
 
-                    <h4>My Topics</h4>
-                    <table class="table table-striped center">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Some Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for topic in mytopics %}
+                        <div style="margin-bottom: 30px"></div>
+
+                        <h4>My Topics</h4>
+                        <table class="table table-striped center">
+                            <thead>
                             <tr>
-                                <td>{{ topic.headline }}</td>
-                                <td><a href="{{ path('watchTopic', {'id':  topic.id}) }}">GoTo</a></td>
+                                <th>Name</th>
+                                <th></th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    Nicht eingloggt
+                            </thead>
+                            <tbody>
+                            {% for topic in mytopics %}
+                                <tr>
+                                    <td>{{ topic.headline }}</td>
+                                    <td><a href="{{ path('watchTopic', {'id':  topic.id}) }}">View Posts</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
                 {% endif %}
-
                 <div style="margin-bottom: 50px"></div>
 
                 <h4>All Tags</h4>
@@ -49,11 +51,13 @@
                             <td>{{ tag.title }}</td>
                             <td>{% if tag.topics.count > 0 %}
                                     {% for topic in tag.topics %}
-                                        <p><a href="{{ path('watchTopic', {'id':  topic.id}) }}">{{ topic.headline }}</a></p>
+                                        <p>
+                                            <a href="{{ path('watchTopic', {'id':  topic.id}) }}">{{ topic.headline }}</a>
+                                        </p>
                                     {% endfor %}
-                            {% else %}
-                                No contributions yet!
-                            {% endif %}</td>
+                                {% else %}
+                                    No contributions yet!
+                                {% endif %}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

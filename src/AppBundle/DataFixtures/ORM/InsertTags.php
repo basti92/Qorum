@@ -38,7 +38,7 @@ class InsertTags implements FixtureInterface
 
         $tag = new Tag();
         $tag->setTitle('Empty Tag');
-        $tag->setDescription('Emty / Tag');
+        $tag->setDescription('Empty / Tag');
         $manager->persist($tag);
         $manager->flush();
 

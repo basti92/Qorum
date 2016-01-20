@@ -18,3 +18,20 @@ body {
 }
 
 
+#relatedtags li {
+    float: left;
+}
+
+
+#relatedtags li a {
+    display: block;
+    color: black;
+    text-align: center;
+    margin-left: 25px;
+    text-decoration: none;
+}
+
+#relatedtags li a:hover {
+    background-color: #506189;
+    color:  white;
+}
