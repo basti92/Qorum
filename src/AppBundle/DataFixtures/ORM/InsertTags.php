@@ -18,17 +18,17 @@ class InsertTags implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $tag = new Tag();
-        $tag->setTitle('Frontend');
-        $tag->setDescription('CSS and JS');
-        $manager->persist($tag);
-        $manager->flush();
-
-        $tag = new Tag();
-        $tag->setTitle('Backend');
-        $tag->setDescription('PHP / C# / Java asf.');
-        $manager->persist($tag);
-        $manager->flush();
+//        $tag = new Tag();
+//        $tag->setTitle('Frontend');
+//        $tag->setDescription('CSS and JS');
+//        $manager->persist($tag);
+//        $manager->flush();
+//
+//        $tag = new Tag();
+//        $tag->setTitle('Backend');
+//        $tag->setDescription('PHP / C# / Java asf.');
+//        $manager->persist($tag);
+//        $manager->flush();
 
         $tag = new Tag();
         $tag->setTitle('Framework');
@@ -36,11 +36,11 @@ class InsertTags implements FixtureInterface
         $manager->persist($tag);
         $manager->flush();
 
-        $tag = new Tag();
-        $tag->setTitle('Empty Tag');
-        $tag->setDescription('Empty / Tag');
-        $manager->persist($tag);
-        $manager->flush();
+//        $tag = new Tag();
+//        $tag->setTitle('Empty Tag');
+//        $tag->setDescription('Empty / Tag');
+//        $manager->persist($tag);
+//        $manager->flush();
 
 
 //        $userAdmin = new User();

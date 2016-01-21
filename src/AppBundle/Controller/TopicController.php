@@ -102,6 +102,7 @@ class TopicController extends Controller
         $securityContext = $this->container->get('security.authorization_checker');
         if ($securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
             $token = $this->get('security.token_storage')->getToken();
+
             /* @var $user User */
             $user = $token->getUser();
             $post->setAuthor($user);
