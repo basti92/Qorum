@@ -4,14 +4,14 @@
     <div class="container" style="margin-top: 75px">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="span7 text-center">
-                    <a class="btn icon-btn btn-success" href="{{ path('startTopic') }}"><span
-                                class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>New
-                        Question</a>
-                </div>
+
                 {% if not mytopics is empty %}
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
+                        <div class="span7 text-center">
+                            <a class="btn icon-btn btn-success" href="{{ path('startTopic') }}"><span
+                                        class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>New
+                                Topic</a>
+                        </div>
 
                         <div style="margin-bottom: 30px"></div>
 
@@ -27,31 +27,46 @@
                             {% for topic in mytopics %}
                                 <tr>
                                     <td>{{ topic.headline }}</td>
-                                    <td><a href="{{ path('watchTopic', {'id':  topic.id}) }}">View Posts</a></td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        <h4>All Tags</h4>
-
-                        <table class="table table-striped center">
-                            <thead>
-                            <tr>
-                                <th>Tag</th>
-                                <th>Related Content</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for tag in tags %}
-                                <tr>
-                                    <td>{{  tag.title }}</td>
-                                    <td><a href="{{ path('watchTag', {'id':  tag.id}) }}">View Related Posts</a></td>
+                                    <td>
+                                        <div class="pull-right"><a href="{{ path('watchTopic', {'id':  topic.id}) }}">View
+                                                Posts</a></div>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                     {% endif %}
                 {% endif %}
+
+
+                <div style="margin-bottom: 75px"></div>
+
+                <h4>All Tags</h4>
+
+                <table class="table table-striped center">
+                    <thead>
+                    <tr>
+                        <th>Tag</th>
+
+                        <th>
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tag in tags %}
+                        <tr>
+                            <td>{{ tag.title }}</td>
+                            <td>
+                                <div class="pull-right"><a href="{{ path('watchTag', {'id':  tag.id}) }}">View
+                                        Topics</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
                 <div style="margin-bottom: 50px"></div>
             </div>
         </div>

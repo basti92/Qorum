@@ -24,10 +24,10 @@
                     </div><!-- /panel-body -->
                 </div><!-- /panel panel-default -->
                 {% if topic.tags.count > 0 %}
-                     <ul id="relatedtags" style="list-style-type: none; margin: 0; padding: 0;">
-                    <li>Related Tags:</li>
-                    {% for tag in topic.tags %}
-                            <li><a href="{{ path('homepage') }}">{{ tag.title }}</a></li>
+                    <ul id="relatedtags" style="list-style-type: none; margin: 0; padding: 0;">
+                        <li>Related Tags:</li>
+                        {% for tag in topic.tags %}
+                            <li><a href="{{ path('watchTag', {'id':  tag.id}) }}">{{ tag.title }}</a></li>
                         {% endfor %}</ul>
 
                 {% endif %}
@@ -84,6 +84,14 @@
                 <div style="margin-bottom: 15px"></div>
             {% endif %}
         {% endfor %}
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-sm-offset-2">
+                    <p>No Replies yet!</p>
+                </div><!-- /col-sm-5 -->
+            </div><!-- /row -->
+        </div><!-- /container -->
     {% endif %}
 
 
@@ -96,26 +104,37 @@
         </div>
     {% endblock %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-7 col-sm-offset-2">
-                {{ form_start(form) }}
+    {% if loggedIn %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-sm-offset-2">
+                    {{ form_start(form) }}
 
-                <div class="form-group">
-                    <div class="input-group">
-                        {{ form_label(form.content, 'Your Reply') }}
-                        {{ form_widget(form.content, {'attr' : {'class': 'er-box'}}) }}
-                </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        {{ form_label(form.save) }}
-                        {{ form_widget(form.save, {'attr' : {'cols': '10'}} ) }}
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{ form_label(form.content, 'Your Reply') }}
+                            {{ form_widget(form.content, {'attr' : {'class': 'er-box'}}) }}
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{ form_label(form.save) }}
+                            {{ form_widget(form.save, {'attr' : {'cols': '10'}} ) }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
-                {{ form_end(form) }}
-            </div>
-        </div><!-- /row -->
+            </div><!-- /row -->
 
-    </div><!-- /container -->
+        </div><!-- /container -->
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 col-sm-offset-2">
+                    <p>Please <a href="{{ path('fos_user_security_login') }}">Sign in</a> to contribute!</p>
+                </div>
+            </div><!-- /row -->
+        </div><!-- /container -->
+    {% endif %}
+
 {% endblock %}

@@ -96,11 +96,20 @@ class TopicController extends Controller
 
 
         $post->setDate(new \DateTime('now'));
-        $token = $this->get('security.token_storage')->getToken();
-        /* @var $user User */
-        $user = $token->getUser();
-        $post->setAuthor($user);
-        $post->setTopic($topic);
+
+        $loggedIn = false;
+
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $token = $this->get('security.token_storage')->getToken();
+            /* @var $user User */
+            $user = $token->getUser();
+            $post->setAuthor($user);
+            $post->setTopic($topic);
+            $loggedIn = true;
+        }
+
+
 
         $form = $this->createFormBuilder($post)
             ->add('content', TextareaType::class)
@@ -116,12 +125,14 @@ class TopicController extends Controller
             return $this->render('Topic/watch.html.twig', array(
                 'topic' => $topic,
                 'form' => $form->createView(),
+                'loggedIn' => $loggedIn
             ));
 
         }
         return $this->render('Topic/watch.html.twig', array(
             'topic' => $topic,
             'form' => $form->createView(),
+            'loggedIn' => $loggedIn
         ));
 
     }
