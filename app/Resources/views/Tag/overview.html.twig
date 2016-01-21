@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block main_content %}
+    <div class="container" style="margin-top: 75px">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h4>All Tags</h4>
+
+                <table class="table table-striped center">
+                    <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Related Content</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tag in tags %}
+                        <tr>
+                            <td>{{ tag.title }}</td>
+                            <td>{% if tag.topics.count > 0 %}
+                                    {% for topic in tag.topics %}
+                                        <p>
+                                            <a href="{{ path('watchTopic', {'id':  topic.id}) }}">{{ topic.headline }}</a>
+                                        </p>
+                                    {% endfor %}
+                                {% else %}
+                                    No contributions yet!
+                                {% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+         </div>
+    </div>
+
+{% endblock %}

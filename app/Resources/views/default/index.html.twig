@@ -32,36 +32,27 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                        <h4>All Tags</h4>
+
+                        <table class="table table-striped center">
+                            <thead>
+                            <tr>
+                                <th>Tag</th>
+                                <th>Related Content</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for tag in tags %}
+                                <tr>
+                                    <td>{{  tag.title }}</td>
+                                    <td><a href="{{ path('watchTag', {'id':  tag.id}) }}">View Related Posts</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     {% endif %}
                 {% endif %}
                 <div style="margin-bottom: 50px"></div>
-
-                <h4>All Tags</h4>
-
-                <table class="table table-striped center">
-                    <thead>
-                    <tr>
-                        <th>Tag</th>
-                        <th>Related Content</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for tag in tags %}
-                        <tr>
-                            <td>{{ tag.title }}</td>
-                            <td>{% if tag.topics.count > 0 %}
-                                    {% for topic in tag.topics %}
-                                        <p>
-                                            <a href="{{ path('watchTopic', {'id':  topic.id}) }}">{{ topic.headline }}</a>
-                                        </p>
-                                    {% endfor %}
-                                {% else %}
-                                    No contributions yet!
-                                {% endif %}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
             </div>
         </div>
     </div> {#container fluid#}
