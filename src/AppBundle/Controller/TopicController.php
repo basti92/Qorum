@@ -158,6 +158,8 @@ class TopicController extends Controller
 
         return $this->redirect($this->generateUrl('homepage'));
 
+        //TODO check if Post is owned by logged in User
+
     }
 
 
