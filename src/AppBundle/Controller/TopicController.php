@@ -138,5 +138,27 @@ class TopicController extends Controller
 
     }
 
+    /**
+     * @Route("/Topic/{id}/entity-remove", requirements={"id" = "\d+"}, name="delete_route_name")
+     */
+
+    public function removeAction($id){
+        $topic = $this->getDoctrine()
+            ->getRepository('AppBundle:Topic')->find($id);
+
+        $posts = $this->getDoctrine()
+            ->getRepository('AppBundle:Post')->findByTopic($id);
+
+        $em = $this->getDoctrine()->getManager();
+        foreach ($posts as $post) {
+            $em->remove($post);
+        }
+        $em->remove($topic);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('homepage'));
+
+    }
+
 
 }

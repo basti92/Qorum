@@ -30,8 +30,7 @@
                                 <tr>
                                     <td>{{ topic.headline }}</td>
                                     <td>
-                                        <div class="pull-right"><a href="{{ path('watchTopic', {'id':  topic.id}) }}">View
-                                                Posts</a></div>
+                                        <div class="pull-right"><a href="{{ path('watchTopic', {'id':  topic.id}) }}">View Posts</a></div>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -60,8 +59,7 @@
                         <tr>
                             <td>{{ tag.title }}</td>
                             <td>
-                                <div class="pull-right"><a href="{{ path('watchTag', {'id':  tag.id}) }}">View
-                                        Topics</a>
+                                <div class="pull-right"><a href="{{ path('watchTag', {'id':  tag.id}) }}">View Topics</a>
                                 </div>
                             </td>
                         </tr>
