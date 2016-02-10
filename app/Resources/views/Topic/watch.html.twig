@@ -60,7 +60,6 @@
                             </div><!-- /panel panel-default -->
                         </div><!-- /col-sm-5 -->
                     </div><!-- /row -->
-
                 </div><!-- /container -->
 
                 <div style="margin-bottom: 15px"></div>
@@ -125,7 +124,6 @@
                     {{ form_end(form) }}
                 </div>
             </div><!-- /row -->
-
         </div><!-- /container -->
     {% else %}
         <div class="container">
@@ -134,8 +132,8 @@
                     <p>Please <a href="{{ path('fos_user_security_login') }}">Sign in</a> to contribute!</p>
                 </div>
             </div><!-- /row -->
+
         </div><!-- /container -->
     {% endif %}
-    <a href="{{ path('delete_route_name', {'id': topic.id }) }}">Delete</a>
-
+    <a href="{{ path('delete_route_name', {'id': topic.id }) }}" class="btn btn-danger">Delete Post</a>
 {% endblock %}
