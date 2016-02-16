@@ -18,7 +18,7 @@
                     <div class="panel-heading">
                         <strong>{{ topic.author.username }}</strong>
                         <span class="text-muted">{{ topic.date.format('Y-m-d H:i:s') }}</span>
-                        <span class="btn btn-default pull-right">Edit Topic</span>
+                        <a href="{{ path('edit_topic', {'id': topic.id }) }}" class="btn btn-default pull-right">Edit Topic</a>
                     </div>
                     <div class="panel-body">
                         {{ topic.description }}
@@ -138,5 +138,5 @@
 
         </div><!-- /container -->
     {% endif %}
-    <a href="{{ path('delete_route_name', {'id': topic.id }) }}" class="btn btn-danger">Delete Post</a>
+    <a href="{{ path('delete_topic', {'id': topic.id }) }}" class="btn btn-danger">Delete Topic</a>
 {% endblock %}

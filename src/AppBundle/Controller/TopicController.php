@@ -139,7 +139,51 @@ class TopicController extends Controller
     }
 
     /**
-     * @Route("/Topic/{id}/entity-remove", requirements={"id" = "\d+"}, name="delete_route_name")
+     * @Route("/Topic/{id}/edit", requirements={"id" = "\d+"}, name="edit_topic")
+     */
+
+    public function editAction($id, Request $request){
+
+        $tags = $this->getDoctrine()
+            ->getRepository('AppBundle:Tag')->findAll();
+
+        $em = $this->getDoctrine()->getManager();
+        $topic = $em->getRepository("AppBundle:Topic")->find($id);
+        if (!$topic) {
+            throw $this->createNotFoundException(
+                'No Topic found for id ' . $id
+            );
+        }
+
+        $form = $this->createFormBuilder($topic)
+            ->add('headline', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('tags', EntityType::class, array(
+                'class' => 'AppBundle:Tag',
+                'choice_label' => 'title',
+                'choices' => $tags,
+                "multiple" => true,
+                'choices_as_values' => true,
+                'expanded' => true,
+            ))
+            ->add('save', SubmitType::class, array('label' => 'Save changes to Topic'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em->flush();
+            return $this->redirect($this->generateUrl('watchTopic', array('id' => $topic->getId())));
+        }
+
+        return $this->render('Topic/new.html.twig', array(
+        'form' => $form->createView(),
+        ));
+    }
+
+
+    /**
+     * @Route("/Topic/{id}/topic-remove", requirements={"id" = "\d+"}, name="delete_topic")
      */
 
     public function removeAction($id){
