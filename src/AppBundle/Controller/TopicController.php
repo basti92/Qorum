@@ -13,6 +13,8 @@ use AppBundle\Entity\Post;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\Topic;
 use AppBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,7 +63,7 @@ class TopicController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             // ... perform some action, such as saving the task to the database
             dump($form);
-            //$securityContext = $this->container->get('security.authorization_checker');   ????
+            $securityContext = $this->container->get('security.authorization_checker');
             $token = $this->get('security.token_storage')->getToken();
             /* @var $user User */
             $user = $token->getUser();
