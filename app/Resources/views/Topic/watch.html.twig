@@ -16,8 +16,9 @@
             <div class="col-sm-9 col-sm-offset-1">
                 <div class="panel panel-default" style="background-color: #fff733">
                     <div class="panel-heading">
-                        <strong>{{ topic.author.username }}</strong> <span
-                                class="text-muted">{{ topic.date.format('Y-m-d H:i:s') }}</span>
+                        <strong>{{ topic.author.username }}</strong>
+                        <span class="text-muted">{{ topic.date.format('Y-m-d H:i:s') }}</span>
+                        <span class="btn btn-default pull-right">Edit Topic</span>
                     </div>
                     <div class="panel-body">
                         {{ topic.description }}
@@ -51,8 +52,9 @@
                         <div class="col-sm-7 col-sm-offset-2">
                             <div class="panel panel-default" style="background-color: #cbe1ff">
                                 <div class="panel-heading">
-                                    <strong>{{ post.author }}</strong> <span
-                                            class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                    <strong>{{ post.author }}</strong>
+                                    <span class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                    <span class="btn btn-default pull-right">Edit Post</span>
                                 </div>
                                 <div class="panel-body">
                                     {{ post.content }}
@@ -70,8 +72,9 @@
                         <div class="col-sm-7 col-sm-offset-2">
                             <div class="panel panel-default" style="background-color: #d1ffa0">
                                 <div class="panel-heading">
-                                    <strong>{{ post.author }}</strong> <span
-                                            class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                    <strong>{{ post.author }}</strong>
+                                    <span class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                    <span class="btn btn-default pull-right">Edit Post</span>
                                 </div>
                                 <div class="panel-body">
                                     {{ post.content }}

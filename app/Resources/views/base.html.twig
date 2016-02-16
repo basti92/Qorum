@@ -23,18 +23,22 @@
 <!-- BODY -->
 {% block body %}
 
+
     <!-- HEADER -->
     {% block header %}
         {% include 'default/menu_bar_top.html.twig' %}
     {% endblock %}
 
+    {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") or app.request.get('_route') == 'fos_user_security_login') %}
 
     <!-- CONTENT -->
     {% block main_content %}
 
     {% endblock %}
 
-
+    {% else %}
+    <div class="span7 text-center">Please Login to view or add topics... </div>
+    {% endif %}
     <!-- FOOTER -->
     {% block footer %}
 

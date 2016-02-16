@@ -13,8 +13,6 @@ use AppBundle\Entity\Post;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\Topic;
 use AppBundle\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,7 +61,7 @@ class TopicController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             // ... perform some action, such as saving the task to the database
             dump($form);
-            $securityContext = $this->container->get('security.authorization_checker');
+            //$securityContext = $this->container->get('security.authorization_checker');   ????
             $token = $this->get('security.token_storage')->getToken();
             /* @var $user User */
             $user = $token->getUser();
@@ -143,15 +141,16 @@ class TopicController extends Controller
      */
 
     public function removeAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+
         $topic = $this->getDoctrine()
             ->getRepository('AppBundle:Topic')->find($id);
 
-        $posts = $this->getDoctrine()
-            ->getRepository('AppBundle:Post')->findByTopic($id);
-
-        $em = $this->getDoctrine()->getManager();
-        foreach ($posts as $post) {
-            $em->remove($post);
+        if(!empty($posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findByTopic($id))) {
+            foreach ($posts as $post) {
+                $em->remove($post);
+            }
         }
         $em->remove($topic);
         $em->flush();
