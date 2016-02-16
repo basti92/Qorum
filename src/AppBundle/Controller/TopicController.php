@@ -144,6 +144,8 @@ class TopicController extends Controller
 
     public function editAction($id, Request $request){
 
+        //TODO check if Post is owned by logged in User
+
         $tags = $this->getDoctrine()
             ->getRepository('AppBundle:Tag')->findAll();
 
@@ -188,6 +190,8 @@ class TopicController extends Controller
 
     public function removeAction($id){
 
+        //TODO check if Post is owned by logged in User
+
         $em = $this->getDoctrine()->getManager();
 
         $topic = $this->getDoctrine()
@@ -202,8 +206,6 @@ class TopicController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('homepage'));
-
-        //TODO check if Post is owned by logged in User
 
     }
 
