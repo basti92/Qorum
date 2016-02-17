@@ -18,9 +18,10 @@
                     <div class="panel-heading">
                         <strong>{{ topic.author.username }}</strong>
                         <span class="text-muted">{{ topic.date.format('Y-m-d H:i:s') }}</span>
+                        {% if app.user == topic.author.username %}
                         <span class="btn btn-danger btn-xs pull-right"><a href="{{ path('deleteTopic', {'id': topic.id }) }}">Delete Topic</a></span>
                         <span class="btn btn-default btn-xs pull-right"><a href="{{ path('editTopic', {'id': topic.id }) }}">Edit Topic</a></span>
-
+                        {% endif %}
                     </div>
                     <div class="panel-body">
                         {{ topic.description }}

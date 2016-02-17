@@ -144,8 +144,6 @@ class TopicController extends Controller
 
     public function editAction($id, Request $request){
 
-        //TODO check if Post is owned by logged in User
-
         $tags = $this->getDoctrine()
             ->getRepository('AppBundle:Tag')->findAll();
 
@@ -190,12 +188,13 @@ class TopicController extends Controller
 
     public function removeAction($id){
 
-        //TODO check if Post is owned by logged in User
-
         $em = $this->getDoctrine()->getManager();
-
-        $topic = $this->getDoctrine()
-            ->getRepository('AppBundle:Topic')->find($id);
+        $topic = $em->getRepository("AppBundle:Topic")->find($id);
+        if (!$topic) {
+            throw $this->createNotFoundException(
+                'No Topic found for id ' . $id
+            );
+        }
 
         if(!empty($posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findByTopic($id))) {
             foreach ($posts as $post) {
