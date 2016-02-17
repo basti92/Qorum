@@ -25,7 +25,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class TopicController extends Controller
 {
     /**
-     * @Route("/Topic/start", name="startTopic")
+     * @Route("/topic/start", name="startTopic")
      */
     public function newAction(Request $request)
     {
@@ -84,7 +84,7 @@ class TopicController extends Controller
 
 
     /**
-     * @Route("/Topic/{id}", name="watchTopic")
+     * @Route("/topic/{id}", name="watchTopic")
      */
     public function watchAction(Request $request, $id) {
         $topic = $this->getDoctrine()
@@ -139,7 +139,7 @@ class TopicController extends Controller
     }
 
     /**
-     * @Route("/Topic/{id}/edit", requirements={"id" = "\d+"}, name="edit_topic")
+     * @Route("/topic/{id}/edit", requirements={"id" = "\d+"}, name="editTopic")
      */
 
     public function editAction($id, Request $request){
@@ -185,7 +185,7 @@ class TopicController extends Controller
 
 
     /**
-     * @Route("/Topic/{id}/topic-remove", requirements={"id" = "\d+"}, name="delete_topic")
+     * @Route("/topic/{id}/remove", requirements={"id" = "\d+"}, name="deleteTopic")
      */
 
     public function removeAction($id){

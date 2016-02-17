@@ -10,7 +10,7 @@ class TagController extends Controller {
 
 
     /**
-     * @Route("/Tag/{id}", name="watchTag")
+     * @Route("/tag/{id}", name="watchTag")
      */
     public function watchAction(Request $request, $id){
 

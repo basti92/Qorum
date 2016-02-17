@@ -12,7 +12,7 @@ security:
 
     firewalls:
         main:
-            pattern: ^/
+
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
@@ -23,6 +23,7 @@ security:
             anonymous:    true
 
     access_control:
+        - { path: ^/topic, role: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

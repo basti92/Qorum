@@ -29,16 +29,13 @@
         {% include 'default/menu_bar_top.html.twig' %}
     {% endblock %}
 
-    {% if (is_granted("IS_AUTHENTICATED_REMEMBERED") or app.request.get('_route') == 'fos_user_security_login' or app.request.get('_route') == 'fos_user_registration_register')  %}
 
     <!-- CONTENT -->
     {% block main_content %}
 
     {% endblock %}
 
-    {% else %}
-    <div class="span7 text-center">Please Login to view topics... </div>
-    {% endif %}
+
     <!-- FOOTER -->
     {% block footer %}
 
