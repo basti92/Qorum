@@ -18,7 +18,9 @@
                     <div class="panel-heading">
                         <strong>{{ topic.author.username }}</strong>
                         <span class="text-muted">{{ topic.date.format('Y-m-d H:i:s') }}</span>
-                        <a href="{{ path('editTopic', {'id': topic.id }) }}" class="btn btn-default pull-right">Edit Topic</a>
+                        <span class="btn btn-danger btn-xs pull-right"><a href="{{ path('deleteTopic', {'id': topic.id }) }}">Delete Topic</a></span>
+                        <span class="btn btn-default btn-xs pull-right"><a href="{{ path('editTopic', {'id': topic.id }) }}">Edit Topic</a></span>
+
                     </div>
                     <div class="panel-body">
                         {{ topic.description }}
@@ -54,7 +56,6 @@
                                 <div class="panel-heading">
                                     <strong>{{ post.author }}</strong>
                                     <span class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
-                                    <span class="btn btn-default pull-right">Edit Post</span>
                                 </div>
                                 <div class="panel-body">
                                     {{ post.content }}
@@ -74,7 +75,6 @@
                                 <div class="panel-heading">
                                     <strong>{{ post.author }}</strong>
                                     <span class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
-                                    <span class="btn btn-default pull-right">Edit Post</span>
                                 </div>
                                 <div class="panel-body">
                                     {{ post.content }}
@@ -138,5 +138,4 @@
 
         </div><!-- /container -->
     {% endif %}
-    <a href="{{ path('deleteTopic', {'id': topic.id }) }}" class="btn btn-danger">Delete Topic</a>
 {% endblock %}

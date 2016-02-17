@@ -22,13 +22,9 @@ class DefaultController extends Controller
 
             /* @var $user User */
             $user = $token->getUser();
-
-
             $mytopics = $user->getTopicsInvolved();
 
-
         }
-
 
         //  All Tags ordered by ContentSize related
         $tagrepo = $this->getDoctrine()
