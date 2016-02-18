@@ -90,10 +90,7 @@ class TopicController extends Controller
         $topic = $this->getDoctrine()
             ->getRepository('AppBundle:Topic')->find($id);
 
-        dump($topic);
-
         $post = new Post();
-
 
         $post->setDate(new \DateTime('now'));
 
@@ -110,13 +107,10 @@ class TopicController extends Controller
             $loggedIn = true;
         }
 
-
-
         $form = $this->createFormBuilder($post)
             ->add('content', TextareaType::class)
-            ->add('save', SubmitType::class, array('label' => 'Reply'))
+            ->add('save', SubmitType::class, array('label' => 'Fast Replay'))
             ->getForm();
-
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -139,7 +133,7 @@ class TopicController extends Controller
     }
 
     /**
-     * @Route("/topic/{id}/edit", requirements={"id" = "\d+"}, name="editTopic")
+     * @Route("/topic/edit/{id}/", requirements={"id" = "\d+"}, name="editTopic")
      */
 
     public function editAction($id, Request $request){
@@ -183,7 +177,7 @@ class TopicController extends Controller
 
 
     /**
-     * @Route("/topic/{id}/remove", requirements={"id" = "\d+"}, name="deleteTopic")
+     * @Route("/topic/remove/{id}", requirements={"id" = "\d+"}, name="deleteTopic")
      */
 
     public function removeAction($id){

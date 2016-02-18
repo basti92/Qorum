@@ -33,7 +33,7 @@ class Post
 
 
     /**
-     * the Topic the this post belongs to
+     * the le the this post belongs to
      * @ORM\ManyToOne(targetEntity="Topic", inversedBy="posts")
      * @ORM\JoinColumn(name="topic_id", referencedColumnName="id")
      */

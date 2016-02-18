@@ -57,6 +57,10 @@
                                 <div class="panel-heading">
                                     <strong>{{ post.author }}</strong>
                                     <span class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                    {% if app.user == post.author.username %}
+                                        <span class="btn btn-danger btn-xs pull-right"><a href="{{ path('deletePost', {'id': post.id }) }}">Delete Post</a></span>
+                                        <span class="btn btn-default btn-xs pull-right"><a href="{{ path('editPost', {'id': post.id }) }}">Edit Post</a></span>
+                                    {% endif %}
                                 </div>
                                 <div class="panel-body">
                                     {{ post.content }}
@@ -76,6 +80,10 @@
                                 <div class="panel-heading">
                                     <strong>{{ post.author }}</strong>
                                     <span class="text-muted">{{ post.date.format('Y-m-d H:i:s') }}</span>
+                                    {% if app.user == post.author.username %}
+                                        <span class="btn btn-danger btn-xs pull-right"><a href="{{ path('deletePost', {'id': post.id }) }}">Delete Post</a></span>
+                                        <span class="btn btn-default btn-xs pull-right"><a href="{{ path('editPost', {'id': post.id }) }}">Edit Post</a></span>
+                                    {% endif %}
                                 </div>
                                 <div class="panel-body">
                                     {{ post.content }}
@@ -115,7 +123,7 @@
 
                     <div class="form-group">
                         <div class="input-group">
-                            {{ form_label(form.content, 'Your Reply') }}
+                            {{ form_label(form.content, 'Fast Reply') }}
                             {{ form_widget(form.content, {'attr' : {'class': 'er-box'}}) }}
                         </div>
                     </div>
@@ -128,6 +136,7 @@
                     {{ form_end(form) }}
                 </div>
             </div><!-- /row -->
+            <span class="btn btn-danger"><a href="{{ path('addPost', {'id': topic.id }) }}">Post Reply</a></span>
         </div><!-- /container -->
     {% else %}
         <div class="container">
