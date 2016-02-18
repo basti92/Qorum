@@ -109,7 +109,7 @@ class TopicController extends Controller
 
         $form = $this->createFormBuilder($post)
             ->add('content', TextareaType::class)
-            ->add('save', SubmitType::class, array('label' => 'Fast Replay'))
+            ->add('save', SubmitType::class, array('label' => 'Quick Reply'))
             ->getForm();
 
         $form->handleRequest($request);

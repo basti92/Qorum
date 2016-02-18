@@ -122,9 +122,13 @@ class PostController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             return $this->redirect($this->generateUrl('watchTopic', array('id' => $topic->getId())));
-        } else {
-            return new Response("Form not valid");
         }
+        return $this->render('Post/add.html.twig', array(
+            'topic' => $topic,
+            'form' => $form->createView(),
+            'loggedIn' => $loggedIn
+        ));
+
     }
 
 
