@@ -28,4 +28,5 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/topic/[0-9]+, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/topic, role: ROLE_USER }
+        - { path: ^/post, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
